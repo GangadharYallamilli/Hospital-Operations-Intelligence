@@ -6,6 +6,15 @@ venv/
 .ipynb_checkpoints/
 *.pkl
 *.joblib
+
 data/raw/*
 data/processed/*
 .vscode/
+
+# Uploaded/private hospital documents
+member2/documents/original/*
+member2/documents/extracted/*
+member2/documents/processed/*
+
+# Logs
+*.log
