@@ -1,0 +1,529 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+button {
+    font-family: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   APP LAYOUT
+========================= */
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #111827;
+    color: white;
+    padding: 24px 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 5px 10px 30px;
+}
+
+.logo-icon {
+    font-size: 32px;
+}
+
+.logo h2 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.logo span {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+
+/* Navigation */
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.nav-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 13px 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #d1d5db;
+
+    text-align: left;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.nav-item span {
+    width: 22px;
+    font-size: 17px;
+}
+
+.nav-item:hover {
+    background: #1f2937;
+    color: white;
+}
+
+.nav-item.active {
+    background: #2563eb;
+    color: white;
+}
+
+
+/* Sidebar bottom */
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 15px 10px;
+}
+
+.system-status {
+    color: #9ca3af;
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+
+    min-height: 100vh;
+    padding: 35px;
+}
+
+
+/* =========================
+   PAGES
+========================= */
+
+.page {
+    display: none;
+}
+
+.page.active-page {
+    display: block;
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+    margin-bottom: 28px;
+}
+
+.topbar h1 {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.topbar p {
+    color: #6b7280;
+    font-size: 15px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.07);
+}
+
+.card h2 {
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #6b7280;
+    margin-bottom: 22px;
+}
+
+
+/* =========================
+   UPLOAD
+========================= */
+
+.upload-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+input[type="file"] {
+    padding: 11px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    background: white;
+    font-size: 14px;
+}
+
+button {
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.file-name {
+    margin-top: 14px;
+    color: #374151;
+    font-size: 14px;
+}
+
+.status {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   DATASET INFO
+========================= */
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.info-box {
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    padding: 18px;
+}
+
+.info-box span {
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.info-box strong {
+    color: #111827;
+    font-size: 18px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section-block {
+    margin-top: 30px;
+}
+
+.section-block h3 {
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+.modules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.module {
+    background: #dbeafe;
+    color: #1e40af;
+
+    padding: 9px 15px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.analysis-status {
+    margin-top: 25px;
+    color: #166534;
+    font-weight: bold;
+}
+
+
+/* =========================
+   KPI CARDS
+========================= */
+
+.kpi-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 15px;
+
+    margin-top: 15px;
+}
+
+.kpi-card {
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    padding: 20px;
+}
+
+.kpi-card span {
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+}
+
+.kpi-card strong {
+    color: #111827;
+
+    font-size: 24px;
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+.table-container {
+    margin-top: 30px;
+    overflow-x: auto;
+}
+
+.table-container h3 {
+    margin-bottom: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 13px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid #e5e7eb;
+}
+
+th {
+    background: #f8fafc;
+    color: #374151;
+    font-size: 13px;
+}
+
+td {
+    color: #374151;
+    font-size: 14px;
+}
+
+
+/* =========================
+   PLACEHOLDER PAGES
+========================= */
+
+.analytics-placeholder,
+.coming-soon {
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 70px 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.07);
+}
+
+.placeholder-icon,
+.coming-soon > div {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.analytics-placeholder h2,
+.coming-soon h2 {
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.analytics-placeholder p,
+.coming-soon p {
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+
+.secondary-button {
+    background: #374151;
+}
+
+.secondary-button:hover {
+    background: #1f2937;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .kpi-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .info-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 70px;
+        padding: 20px 10px;
+    }
+
+    .logo div:not(.logo-icon),
+    .nav-item:not(.nav-item span),
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .nav-item {
+        justify-content: center;
+        padding: 13px 5px;
+    }
+
+    .nav-item span {
+        width: auto;
+    }
+
+    .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+        padding: 20px;
+    }
+
+    .info-grid,
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
