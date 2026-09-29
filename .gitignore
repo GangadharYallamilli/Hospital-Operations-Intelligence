@@ -16,5 +16,8 @@ member2/documents/original/*
 member2/documents/extracted/*
 member2/documents/processed/*
 
+# Generated document chunks
+member2/documents/chunks/*
+
 # Logs
 *.log
