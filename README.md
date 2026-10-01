@@ -1,91 +1,398 @@
-# MedaNexa
+🏥 MedaNexa — AI-Powered Hospital Intelligence
+Understand. Predict. Optimize.
 
-**AI-Powered Hospital Intelligence**
-*Understand. Predict. Optimize.*
+MedaNexa is an AI-powered hospital operations intelligence platform designed to transform hospital operational data and documents into meaningful insights, predictions, and decision-support information.
+Instead of relying on a fixed dashboard, MedaNexa is designed to understand uploaded hospital datasets, identify applicable analytical capabilities, and provide the appropriate analytics, ML predictions, document intelligence, and AI-assisted interaction.
+🌐 Live Website: https://mednexa-w1o4.onrender.com/
+🚀 What is MedaNexa?
+Hospital operational information can be spread across multiple datasets and documents such as admissions, appointments, beds, departments, equipment records, and reports.
+MedaNexa brings these capabilities together into one platform:
+Module	Purpose
+📊 NexaSight	Hospital operational analytics
+🔮 NexaPredict	ML forecasting and risk prediction
+📄 NexaDocs	Document intelligence
+🤖 NexaCopilot	AI-assisted interaction with hospital data
+⚡ NexaPriority	Prioritization of operational tasks
+📈 NexaCommand	Management insights using Power BI
 
-MedaNexa is a local FastAPI application with a browser workspace for hospital data analysis and document intelligence. Pulse accepts structured uploads; NexaSight builds a dataset-specific dashboard and can add a shared MySQL analytics view; NexaPredict and NexaCommand display only model outputs the backend can actually produce; NexaDocs processes PDF/DOCX reports; NexaCopilot routes questions to the hospital SQL reader, trained models, uploaded-document RAG, or the current user's analyzed data.
 
-## Architecture and workspace flow
+✨ Key Features
+📊 Operational Analytics — NexaSight
+Analyze hospital operational data such as:
+- Admissions
+- Appointments
+- Beds and occupancy
+- Departments
+- Medical equipment
+- Waiting times
+- Length of stay
+- Operational KPIs
+The system is designed to work with uploaded datasets rather than depending only on a single predefined dashboard.
+🔮 Predictive Intelligence — NexaPredict
+Machine-learning capabilities include:
+- 📅 Admission demand forecasting
+- 🛏️ Bed demand forecasting
+- ⚠️ Equipment failure-risk prediction
+- 📈 Operational trend analysis
+These predictions are intended to support hospital operations and planning, not medical diagnosis.
+⚡ Operational Prioritization — NexaPriority
+NexaPriority combines predictive results with algorithmic prioritization.
+Example workflow:
+Equipment Data
+      ↓
+ML Failure-Risk Prediction
+      ↓
+Priority Score
+      ↓
+Priority Queue / Max Heap
+      ↓
+Maintenance Priority List
 
-```text
-Pulse CSV/XLSX upload ─→ dataset profile, analytics, dashboard configuration ─→ NexaSight
-                                                                   └──────────→ NexaCommand
-NexaCopilot question ─→ local intent router ─→ read-only MySQL | trained ML | document RAG | uploaded dataset
-MySQL query snapshot ─────────────────────────→ NexaSight + NexaCommand + NexaCopilot SQL answers
-```
+This demonstrates how Machine Learning + DSA can work together for an operational use case.
+📄 Document Intelligence — NexaDocs
+MedaNexa can work with hospital documents such as:
+- PDF
+- DOCX
+- Hospital reports
+- Operational documents
+The document intelligence layer extracts useful information and prepares it for AI-assisted interaction.
+🤖 AI Assistant — NexaCopilot
+NexaCopilot provides an AI interface for interacting with hospital information.
+It is designed to support questions such as:
+What was the average length of stay?
 
-- **Pulse** posts CSV/XLSX files to `POST /analyze-dataset`. It detects available admissions, appointments, beds/capacity, equipment, and department modules from column names and calculates metrics supported by those fields.
-- **NexaSight** renders the returned `dashboard` configuration: KPIs, charts, tables, insights, recommendations, and model availability. Its visual selection is generated from the upload; it is the dynamic Power BI-style dashboard in the web application.
-- **NexaPredict** reads `GET /ml-predictions`. After an upload, this endpoint returns that user's current analysis predictions and their unavailable reasons. It does not invent output when a model is missing.
-- **NexaDocs** accepts PDF/DOCX documents and structured files. PDF/DOCX use extraction, normalization, table/paragraph chunking, embeddings, and semantic retrieval. Each authenticated account's uploads and embeddings are stored under its own directory.
-- **NexaCopilot** uses a local, deterministic intent router. SQL questions call only fixed SELECT query templates; prediction questions read the existing model service and return an explicit unavailable response when a model is missing; document questions call the existing user-scoped RAG pipeline; other supported questions can use the current user's upload analytics. A selected document in the UI still goes directly through `/documents/ask`.
-- **NexaSight** and **NexaCommand** receive the optional shared read-only MySQL analytics snapshot from `/workspace/context`, built by the same backend query module as SQL Copilot answers. Pulse upload analytics continue to be shown alongside the SQL snapshot when both sources are available. The source label distinguishes the uploaded file from the hospital database.
-- **NexaCommand** also consumes the current-user prediction dictionary, document list, and available MySQL analytics. It does not create separate prediction or SQL values.
+Which department had the highest admissions?
 
-CSV and XLSX are the supported structured dataset formats in Pulse. PDF and DOCX are the supported document formats in NexaDocs. Uploads are limited to 25 MB. Empty or unreadable structured files return an error; a general dataset with no recognized hospital module receives generic profiling rather than invented hospital metrics.
+What is the current bed occupancy?
 
-Workspace analysis is kept in server process memory and the browser's sessionStorage. Restarting FastAPI clears the server copy; upload the file again in Pulse to rebuild it. This is a single-process local application design, not a multi-instance persistence layer.
+Which equipment requires attention?
 
-## Power BI report
+The system can route questions toward relevant SQL analytics, ML results, dataset analytics, or document-based information.
+📈 Management Insights — NexaCommand
+MedaNexa includes Power BI dashboards for management-level reporting.
+The current Power BI implementation provides:
+- Executive Overview
+- Operations Analytics
+- Hospital KPIs
+- Admissions analysis
+- Appointment analysis
+- Bed occupancy
+- Equipment status
+- Department-level insights
+Note: Dynamic Power BI analytics for arbitrary uploaded datasets is planned as a future enhancement.
 
-The existing [`powerbi/Hospital_Operations_Intelligence.pbix`](powerbi/Hospital_Operations_Intelligence.pbix) is preserved. Its readable report metadata contains two pages, `Executive_page` and `Operations Analytics`, with card, line, bar/column, donut/pie, and 100%-stacked column visuals. The PBIX package has a 2.46 MB `DataModel` and a `Connections` entry referencing a remote Power BI report and semantic-model/dataset IDs. The embedded DataModel is in Microsoft's binary format and was not decoded as table data in this audit.
+🧠 Dynamic Dataset Understanding
+One of the key ideas behind MedaNexa is avoiding dependency on exact column names or one fixed dataset.
+The intended workflow is:
+Upload Dataset
+      ↓
+Inspect Columns & Data Types
+      ↓
+Understand Dataset Structure
+      ↓
+Semantic Column Mapping
+      ↓
+Identify Dataset Type
+      ↓
+Determine Available Capabilities
+      ↓
+Run Relevant Analytics / ML
+      ↓
+Generate Dashboard Configuration
+      ↓
+Store Results in Workspace
 
-**Can the PBIX dynamically update from a user-uploaded dataset through the current web application? No.** The FastAPI upload route does not call Power BI, refresh or replace a semantic model, or rewrite the PBIX. No Power BI Service credentials or integration code are configured. The technically honest current arrangement is to keep NexaSight as the live, schema-adaptive dashboard and the PBIX as a separate Power BI deliverable. Do not describe the PBIX as updated by a Pulse upload.
+For example, different datasets may use different names:
+patient_id
+patientid
+patient_no
+patient_number
 
-For a future Service integration, first provision a Power BI tenant/workspace and an explicitly selected semantic model, define the supported schemas and tenant-level data-access policy, and configure an approved Entra ID application/service principal with least-privilege workspace access. A backend integration would then authenticate server-side, map or load uploaded data into a compatible semantic model, trigger refresh, and use supported report/embedding APIs to obtain a short-lived embed token. See Microsoft's [Power BI import API](https://learn.microsoft.com/en-us/rest/api/power-bi/imports/post-import) and [embedded token guidance](https://learn.microsoft.com/en-us/power-bi/developer/embedded/generate-embed-token). Token secrets must stay server-side. Arbitrary user CSV schemas cannot safely be pushed into one existing semantic model without a schema/mapping strategy. The app remains functional without this optional integration.
+The system can use semantic mapping to identify the underlying meaning where supported.
+If only partial information is available, MedaNexa can provide the applicable capabilities instead of assuming that every module is available.
+🏗️ System Architecture
+                    ┌──────────────────────┐
+                    │      Frontend        │
+                    │   HTML / CSS / JS    │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │      FastAPI         │
+                    │    Backend API       │
+                    └──────────┬───────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                │                │
+              ▼                ▼                ▼
+        ┌──────────┐     ┌──────────┐     ┌──────────┐
+        │   SQL    │     │    ML    │     │   RAG    │
+        │  MySQL   │     │ Models   │     │Documents │
+        └────┬─────┘     └────┬─────┘     └────┬─────┘
+             │                │                │
+             └────────────────┼────────────────┘
+                              ▼
+                     ┌─────────────────┐
+                     │  NexaCopilot    │
+                     │  AI Interaction │
+                     └─────────────────┘
 
-## ML availability
+                     ┌─────────────────┐
+                     │    Power BI     │
+                     │ NexaCommand     │
+                     └─────────────────┘
 
-There are currently no installed trained model artifacts or processed source datasets under `ml/models/` and `data/processed/`. Notebook output cells contain metrics from earlier runs; those outputs are not training rows or reusable model artifacts. The only local structured hospital file is a 20-row admissions test extract. It lacks age, gender, and bed type used by the LOS notebook, so it is not used to train a model.
+🔄 End-to-End Data Flow
+Hospital User
+     │
+     ▼
+Upload CSV / Excel / PDF / DOCX
+     │
+     ▼
+Data / Document Understanding
+     │
+     ▼
+Capability Detection
+     │
+     ├──────────────► SQL Analytics
+     │
+     ├──────────────► ML Predictions
+     │
+     ├──────────────► Document Intelligence
+     │
+     └──────────────► AI Interaction
+                           │
+                           ▼
+                    Operational Insights
+                           │
+                           ▼
+                    Smarter Decisions
 
-| Model | Current status | Source data / artifact expected by this project |
-| --- | --- | --- |
-| Length of stay | Unavailable | Admissions cohort with LOS target and model features; the notebook has no model-save step. |
-| Admission demand | Unavailable | `data/processed/admissions/admissions_clean.csv`; `ml/models/admission_demand_forecasting_model.pkl`. |
-| Bed demand | Unavailable | `data/processed/beds/beds_clean.csv`; `ml/models/bed_demand_forecasting_model.pkl`. |
-| Appointment no-show | Unavailable | Labeled `data/processed/appointments/appointments_clean.csv`; the notebook has no model-save step. |
-| Equipment failure/risk | Unavailable | Labeled `data/processed/equipment/equipment_clean.csv`; `ml/models/equipment_failure_model.pkl`. |
+🛠️ Technology Stack
+Programming & Data
+- Python
+- Pandas
+- NumPy
+- SQL
+- MySQL
+Machine Learning
+- Scikit-learn
+- Random Forest
+- Forecasting models
+- Classification models
+Backend
+- FastAPI
+- Uvicorn
+- REST APIs
+AI
+- Gemini
+- RAG
+- Sentence Transformers
+- Document processing
+- AI-assisted question answering
+Documents
+- PDF processing
+- DOCX processing
+Visualization & BI
+- Power BI
+- HTML
+- CSS
+- JavaScript
+Development
+- Git
+- GitHub
+- Docker-ready architecture
+- Cloud deployment
+📂 Project Structure
+MedaNexa/
+│
+├── ai/
+├── app/
+├── backend/
+│   ├── documents/
+│   ├── auth.py
+│   ├── analytics.py
+│   ├── data_understanding.py
+│   ├── ml_service.py
+│   ├── sql_analytics.py
+│   ├── copilot_router.py
+│   ├── nexa_priority_service.py
+│   └── main.py
+│
+├── data/
+│   ├── raw/
+│   └── processed/
+│
+├── database/
+│   └── queries/
+│
+├── dsa/
+├── ml/
+│   └── models/
+│
+├── notebooks/
+│
+├── powerbi/
+│
+├── research/
+│
+├── documents/
+│
+├── requirements.txt
+└── README.md
 
-The admission/bed/equipment services already have artifact-loading paths; no matching artifacts are present. LOS and no-show currently return an explicit unavailable status. To train when real source data is supplied, populate the cleaned inputs under `data/processed/{admissions,beds,appointments,equipment}/` and run the corresponding admission and bed notebooks from `notebooks/`; run equipment training with `.\.venv\Scripts\python.exe backend\train_equipment_model.py` from the repository root. These workflows must be checked against the actual target labels and held-out evaluation before their artifacts are used. The appointment notebook currently does not persist its trained pipeline, and the LOS notebook currently does not persist its trained estimator, so those models also need compatible save and inference steps in `backend/ml_service.py` before they can become available. Do not reuse the notebook's old metric output as a live prediction or performance guarantee.
+📊 Development Dataset
+The project uses synthetic hospital operational data for development and demonstration.
+Datasets include:
+- Admissions — 50,000 records
+- Appointments — 60,000 records
+- Beds — 15,344 records
+- Departments — 14 records
+- Equipment — 5,000 records
+Total development records:
+130,358
+The datasets are designed to support:
+- SQL queries
+- Data cleaning
+- Exploratory Data Analysis
+- Data visualization
+- Machine Learning
+- Forecasting
+- Dataset relationships
+- Operational analysis
+No real patient-identifiable information is used in the development datasets.
 
-## Document AI and external services
+🧹 Data Processing Pipeline
+Raw Data
+   ↓
+Validation
+   ↓
+Missing-Value Analysis
+   ↓
+Duplicate Detection
+   ↓
+Business-Rule Validation
+   ↓
+Data Cleaning
+   ↓
+Processed Dataset
+   ↓
+SQL / EDA / ML / Analytics
 
-PDF extraction uses `pdfplumber`; DOCX extraction uses `python-docx`. Extracted text and tables retain page/table/section metadata through chunking, embeddings, and search results. Sentence Transformers uses `all-MiniLM-L6-v2`; its model files must already be cached or be obtained from the model registry on first use. Without an available model, document processing cannot complete.
+The project includes validation for relationships and operational business rules such as:
+- Invalid department references
+- Incorrect admission/discharge dates
+- Appointment booking-date inconsistencies
+- Invalid bed availability
+- Occupancy inconsistencies
+- Equipment maintenance-date inconsistencies
+🤖 Machine Learning
+Current ML capabilities include:
+Admission Demand Forecasting
+Forecasts future monthly admission demand using historical admission patterns.
+Bed Demand Forecasting
+Forecasts expected occupied-bed demand for upcoming days.
+Equipment Failure Risk
+Predicts equipment failure risk using operational equipment characteristics.
+Example features include:
+Equipment Type
+Equipment Age
+Usage Hours
+Maintenance Count
+Days Until Maintenance
+Department
 
-If `GEMINI_API_KEY` is configured, NexaDocs can request a concise answer from Gemini using retrieved document passages and a prompt that limits the answer to that context. Without the key or if the provider call fails, it returns retrieved passages with page/table/section labels instead. This external provider path is not required for the rest of the application. Do not send hospital documents to an external provider unless the hospital has approved that processing.
+🧮 SQL & Database
+MySQL is used as the structured data layer.
+The database contains:
+departments
+admissions
+appointments
+beds
+equipment
 
-## Authentication and data handling
+SQL is used for:
+- KPI calculations
+- Aggregations
+- Joins
+- Department analysis
+- Appointment analysis
+- Bed analysis
+- Equipment analysis
+- AI-assisted data queries
+- ML data preparation
+🔐 Multi-Hospital Architecture
+MedaNexa is designed with a multi-hospital concept.
+Each hospital can have its own workspace and datasets.
+Hospital A
+ ├── Admissions
+ ├── Appointments
+ ├── Beds
+ └── Equipment
 
-Registration and login are stored in local SQLite (`database/auth.db`). Passwords use salted PBKDF2-HMAC-SHA256 hashes; the signed session cookie contains only the user ID. Workspace pages and protected APIs require an authenticated session. Document uploads and generated embeddings are isolated into per-user directories. Legacy files in the old shared `backend/documents/uploads/` or `processed/` root are not assigned to an account automatically; they remain on disk but are not included in a user's document list.
+Hospital B
+ ├── Admissions
+ ├── Equipment
+ └── Reports
 
-For local development, the app generates a temporary session-signing key if `SESSION_SECRET_KEY` is unset; sessions will not survive a server restart. Before deployment, configure a stable, private `SESSION_SECRET_KEY` and set `SESSION_HTTPS_ONLY=true` behind HTTPS. `.env` and `.env.*` are ignored by Git; `.env.example` may be committed only when it contains placeholders and no secrets.
+Data isolation is handled using a hospital/user workspace context so that datasets from different hospitals are not mixed.
+🎨 User Experience
+We also focused on providing a clean and intuitive UI/UX rather than exposing users directly to complex technical processes.
+The goal is to allow hospital users to move from:
+Upload → Understand → Analyze → Predict → Ask → Decide
+through a consistent interface.
+☁️ Deployment
+MedaNexa is being developed toward a cloud-based deployment architecture.
+Current deployment components include:
+- Cloud-hosted FastAPI backend
+- Cloud MySQL database
+- Production environment variables
+- Public web application
+- API-based architecture
+🌐 Live Application:
+https://mednexa-w1o4.onrender.com/
+🔮 Future Enhancements
+Planned improvements include:
+- Dynamic Power BI integration for uploaded datasets
+- More hospital dataset types
+- Improved predictive models
+- Expanded document intelligence
+- More advanced operational recommendations
+- Further optimization of cloud deployment
+- Additional hospital management workflows
+🎯 Project Objective
+The objective of MedaNexa is not simply to create another hospital dashboard.
+It is to build an end-to-end intelligent system that connects:
+Data
+ ↓
+Cleaning
+ ↓
+EDA
+ ↓
+SQL
+ ↓
+Machine Learning
+ ↓
+AI / RAG
+ ↓
+API
+ ↓
+UI/UX
+ ↓
+Deployment
 
-Optional MySQL import scripts use `MYSQL_HOST`, `MYSQL_USER`, `MYSQL_PASSWORD`, and `MYSQL_DATABASE`. For those imports, `MEDANEXA_PROCESSED_DATA` can point to a directory containing the expected cleaned CSV subfolders. The current ML training and inference code reads from the project `data/processed/` paths listed above.
+The project demonstrates how these technologies can work together as a single practical system.
+👥 Team
+Gangadhar Yallamilli
+Data Science • Machine Learning • SQL • Backend • AI
+Vennavaram Nithin Reddy
+AI • RAG • Backend • Document Intelligence
+📌 Disclaimer
+MedaNexa is an academic/portfolio and operational intelligence project using synthetic development data.
+It is designed for hospital operations and management support and is not a medical diagnosis or clinical decision-making system.
+⭐ Project
+MedaNexa — AI-Powered Hospital Intelligence
+Understand. Predict. Optimize.
 
-### Optional read-only SQL analytics
-
-The SQL reader uses a dedicated account and does not fall back to importer credentials. Configure `MYSQL_READONLY_USER` and `MYSQL_READONLY_PASSWORD` plus `MYSQL_HOST` (default `127.0.0.1`), `MYSQL_PORT` (default `3306`), and `MYSQL_DATABASE` (default `hospital_operations`) in the application environment. Grant that account only `SELECT` on the five analytics tables (`departments`, `admissions`, `appointments`, `beds`, `equipment`); the reader also opens read-only transactions. Do not use the import/admin account as the Copilot reader. If the read-only credentials or connection are absent, the app remains available and reports structured database analytics as unavailable.
-
-Supported Copilot database questions include average length of stay (optionally for a department), department with the most admissions, cancelled appointments in the previous calendar month, occupied beds in the latest recorded bed snapshot, and equipment units with an operational status. Query logic is reused from `database/queries/01_basic_analytics.sql` through `04_equipment_analytics.sql` where those files already define the aggregation. The appointment last-month count and latest bed snapshot use additional fixed SELECT statements because the query files do not currently define those exact time scopes. User text is never executed as SQL; department text is passed as a bound parameter. `NexaSight` and `NexaCommand` use the same backend query module and identify the MySQL source separately from an uploaded Pulse file.
-
-Intent classification stays local to avoid transmitting hospital questions for routing. High-confidence multiword patterns route the documented SQL and model intents; paraphrases that do not match those patterns can be scored against fixed intent examples with the locally cached `all-MiniLM-L6-v2` Sentence Transformer already used by RAG. The model is loaded with local-only files, never downloaded as part of routing, and close or low-confidence matches receive a clarification prompt. A document selected in the Copilot UI continues to invoke `/documents/ask` directly. RAG extraction, embeddings, semantic retrieval, and grounded answer generation remain unchanged.
-
-## Run locally
-
-The current project virtual environment is Python 3.12.14. From the repository root in PowerShell:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
-```
-
-Open [http://127.0.0.1:8000](http://127.0.0.1:8000), register a local account, then sign in. The workspace is protected; `/home.html`, `/login.html`, and `/register.html` are public.
-
-## Repository map
-
-- `app/` — public and authenticated workspace HTML, JavaScript, and CSS
-- `backend/` — FastAPI routes, authentication, dataset understanding, analytics, dashboard configuration, ML service, and document/RAG pipeline
-- `database/` — local authentication database (ignored) and optional SQL/MySQL scripts
-- `notebooks/` — historical exploration and model-training notebooks
-- `powerbi/` — separate Power BI report deliverable
-- `data/processed/`, `ml/models/` — expected input and output locations when real training datasets/artifacts are supplied
+🌐 Live: https://mednexa-w1o4.onrender.com/
+Built with Python • SQL • Machine Learning • FastAPI • RAG • Gemini • Power BI.
