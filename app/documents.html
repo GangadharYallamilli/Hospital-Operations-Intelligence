@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexaDocs | MedaNexa</title><link rel="stylesheet" href="/style.css">
+</head>
+<body class="workspace-page">
+<div class="workspace-shell">
+      <aside class="workspace-sidebar" aria-label="Workspace navigation">
+        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Close navigation" aria-expanded="true" aria-controls="workspaceNavigation">
+            <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <a class="workspace-brand" href="/index.html" aria-label="MedaNexa Pulse">
+            <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+            <span><strong>MedaNexa</strong><small>Hospital Intelligence</small></span>
+        </a>
+        <nav class="workspace-nav" id="workspaceNavigation" aria-label="Workspace">
+            <a href="/index.html" aria-label="Pulse" data-short-label="P"><span>Pulse</span></a>
+            <a href="/analytics.html" aria-label="NexaSight" data-short-label="S"><span>NexaSight</span></a>
+            <a href="/predict.html" aria-label="NexaPredict" data-short-label="P"><span>NexaPredict</span></a>
+            <a href="/documents.html" aria-label="NexaDocs" data-short-label="D"><span>NexaDocs</span></a>
+            <a href="/copilot.html" aria-label="NexaCopilot" data-short-label="C"><span>NexaCopilot</span></a>
+            <a href="/command.html" aria-label="NexaCommand" data-short-label="M"><span>NexaCommand</span></a>
+        </nav>
+        <div class="workspace-sidebar-footer">
+            <div class="workspace-user">
+                <div class="workspace-user-avatar" id="userAvatar">A</div>
+                <div><strong id="userName">Hospital Admin</strong><small id="userHospital">Hospital Workspace</small></div>
+            </div>
+            <button id="logoutButton" class="workspace-logout" type="button" aria-label="Sign out">Sign out</button>
+        </div>
+    </aside>
+  <main class="workspace-main">
+    <header class="workspace-header"><div><span class="workspace-eyebrow">NEXADOCS</span><h1>Hospital document intelligence.</h1><p>Process PDF and DOCX reports, then search their extracted content with cited source passages.</p></div></header>
+    <section class="workspace-panel docs-upload-panel">
+      <div><span class="section-label">DOCUMENT INGESTION</span><h2>Upload a report</h2><p>PDF and DOCX files are processed by the existing extraction, chunking, embedding, and retrieval pipeline.</p></div>
+      <form id="documentUploadForm" class="docs-upload-form"><label class="docs-file-picker" for="documentFile"><span class="docs-file-icon" aria-hidden="true">PDF</span><span><strong id="documentFileName">Choose a PDF or DOCX</strong><small>Maximum file size: 25 MB</small></span><input id="documentFile" name="file" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required></label><button id="documentUploadButton" class="primary-button" type="submit">Process document</button></form>
+      <p id="documentUploadStatus" class="workspace-status" role="status" aria-live="polite"></p>
+    </section>
+    <section class="workspace-panel"><div class="workspace-panel-heading"><div><span class="section-label">KNOWLEDGE BASE</span><h2>Available documents</h2></div><button id="refreshDocumentsButton" class="secondary-button" type="button">Refresh</button></div><div id="documentsList" class="documents-list"><p class="muted-copy">Loading documents…</p></div></section>
+    <section class="workspace-panel"><div><span class="section-label">DOCUMENT SEARCH</span><h2>Ask a report</h2><p>Answers are generated from retrieved passages in the selected document.</p></div><form id="documentQuestionForm" class="question-form"><label for="documentSelect">Document</label><select id="documentSelect" required><option value="">Choose a processed PDF or DOCX</option></select><label for="documentQuestion">Question</label><textarea id="documentQuestion" rows="3" maxlength="1000" placeholder="What does this report say about operational performance?" required></textarea><button id="documentAskButton" class="primary-button" type="submit">Search documents</button></form><p id="documentQuestionStatus" class="workspace-status" role="status" aria-live="polite"></p><article id="documentAnswer" class="document-answer hidden"></article></section>
+  </main>
+</div>
+<script src="/documents.js"></script><script src="/sidebar.js"></script>
+</body></html>
+

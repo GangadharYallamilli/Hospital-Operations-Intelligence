@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexaPredict | MedaNexa</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="workspace-page">
+
+<div class="workspace-shell">
+
+        <aside class="workspace-sidebar" aria-label="Workspace navigation">
+        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Close navigation" aria-expanded="true" aria-controls="workspaceNavigation">
+            <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <a class="workspace-brand" href="/index.html" aria-label="MedaNexa Pulse">
+            <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+            <span><strong>MedaNexa</strong><small>Hospital Intelligence</small></span>
+        </a>
+        <nav class="workspace-nav" id="workspaceNavigation" aria-label="Workspace">
+            <a href="/index.html" aria-label="Pulse" data-short-label="P"><span>Pulse</span></a>
+            <a href="/analytics.html" aria-label="NexaSight" data-short-label="S"><span>NexaSight</span></a>
+            <a href="/predict.html" aria-label="NexaPredict" data-short-label="P"><span>NexaPredict</span></a>
+            <a href="/documents.html" aria-label="NexaDocs" data-short-label="D"><span>NexaDocs</span></a>
+            <a href="/copilot.html" aria-label="NexaCopilot" data-short-label="C"><span>NexaCopilot</span></a>
+            <a href="/command.html" aria-label="NexaCommand" data-short-label="M"><span>NexaCommand</span></a>
+        </nav>
+        <div class="workspace-sidebar-footer">
+            <div class="workspace-user">
+                <div class="workspace-user-avatar" id="userAvatar">A</div>
+                <div><strong id="userName">Hospital Admin</strong><small id="userHospital">Hospital Workspace</small></div>
+            </div>
+            <button id="logoutButton" class="workspace-logout" type="button" aria-label="Sign out">Sign out</button>
+        </div>
+    </aside>
+
+
+    <main class="workspace-main">
+
+        <header class="workspace-header">
+
+            <div>
+                <span class="workspace-eyebrow">NEXAPREDICT</span>
+
+                <h1>Predict what comes next.</h1>
+
+                <p>
+                    Use hospital data and machine learning to anticipate
+                    operational demand and emerging risks.
+                </p>
+            </div>
+
+        </header>
+
+
+        <section class="predict-intro">
+
+            <div class="predict-intro-content">
+
+                <span class="predict-label">AI-POWERED PREDICTION</span>
+
+                <h2>
+                    Turn historical hospital data into
+                    <span>forward-looking intelligence.</span>
+                </h2>
+
+                <p>
+                    NexaPredict uses trained machine learning models to
+                    generate operational forecasts and predictive insights
+                    across hospital workflows.
+                </p>
+
+            </div>
+
+            <div class="predict-intro-visual">
+
+                <div class="predict-orbit orbit-one"></div>
+                <div class="predict-orbit orbit-two"></div>
+
+                <div class="predict-core">
+                    <span>AI</span>
+                    <small>Predict</small>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="predict-model-section dataset-intelligence-section" id="datasetIntelligenceSection">
+
+    <div class="predict-section-heading">
+        <div>
+            <span class="section-label">CURRENT DATASET</span>
+            <h3>Dataset Intelligence</h3>
+        </div>
+
+        <span class="model-status" id="datasetIntelligenceStatus">
+            Analyzed upload
+        </span>
+    </div>
+
+    <div class="predict-model-grid" id="datasetIntelligenceGrid">
+        <article class="predict-model-card">
+            <div class="predict-model-icon">DATA</div>
+            <div>
+                <h4>Loading dataset intelligence</h4>
+                <p>Reading the current analyzed hospital dataset.</p>
+            </div>
+        </article>
+    </div>
+
+</section>
+
+
+        <section class="predict-model-section">
+
+            <div class="predict-section-heading">
+
+                <div>
+                    <span class="section-label">PREDICTION MODELS</span>
+
+                    <h3>Available Intelligence</h3>
+                </div>
+
+                <span class="model-status" id="modelStatus">Checking backend…</span>
+
+            </div>
+
+
+            <div class="predict-model-grid">
+
+                <article class="predict-model-card">
+
+                    <div class="predict-model-icon">
+                        LOS
+                    </div>
+
+                    <div>
+                        <h4>Length of Stay</h4>
+
+                        <p>
+                            A result appears when a compatible trained model and admission inputs are available.
+                        </p>
+                    </div>
+
+                    <span class="model-tag" id="lengthOfStayStatus">Checking</span>
+
+                </article>
+
+
+                <article class="predict-model-card">
+
+                    <div class="predict-model-icon">
+                        BED
+                    </div>
+
+                    <div>
+                        <h4>Bed Demand</h4>
+
+                        <p>
+                            Forecast future bed requirements and
+                            capacity pressure.
+                        </p>
+                    </div>
+
+                    <span class="model-tag" id="bedDemandStatus">Checking</span>
+
+                </article>
+
+
+                <article class="predict-model-card">
+
+                    <div class="predict-model-icon">
+                        APPT
+                    </div>
+
+                    <div>
+                        <h4>Appointment No-Show</h4>
+
+                    <p>A result appears when a compatible trained model and labeled appointment inputs are available.</p>
+                    </div>
+
+                    <span class="model-tag" id="noShowStatus">Checking</span>
+
+                </article>
+
+
+                <article class="predict-model-card">
+
+                    <div class="predict-model-icon">
+                        EQP
+                    </div>
+
+                    <div>
+                        <h4>Equipment Failure</h4>
+
+                        <p>
+                            Detect equipment risk patterns and
+                            support proactive maintenance planning.
+                        </p>
+                    </div>
+
+                    <span class="model-tag" id="equipmentStatus">Checking</span>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <section class="predict-result-section" id="predictionSection">
+
+            <div class="predict-empty-state">
+
+                <div class="predict-empty-icon">
+                    AI
+                </div>
+
+                <h3>Prediction results will appear here</h3>
+
+                <p>
+                    Run a prediction model to view forecasts,
+                    probabilities and operational insights.
+                </p>
+
+            </div>
+
+        </section>
+        <section class="predict-model-section nexa-priority-section" id="nexaPrioritySection">
+
+    <div class="predict-section-heading">
+        <div>
+            <span class="section-label">DSA-POWERED MAINTENANCE</span>
+            <h3>NexaPriority</h3>
+        </div>
+
+        <span class="model-status" id="nexaPriorityStatus">
+            Loading priority list…
+        </span>
+    </div>
+
+    <div class="nexa-priority-intro">
+        <div>
+            <h4>Equipment Maintenance Priority</h4>
+            <p>
+                NexaPriority combines equipment risk, usage,
+                maintenance history and operational status to
+                determine which equipment should receive attention first.
+            </p>
+        </div>
+
+        <div class="nexa-priority-method">
+            <span>HASH MAP</span>
+            <span>MAX HEAP</span>
+            <span>PRIORITY QUEUE</span>
+        </div>
+    </div>
+
+    <div class="nexa-priority-table-wrap">
+
+        <table class="nexa-priority-table">
+
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Equipment ID</th>
+                    <th>Equipment Type</th>
+                    <th>Priority Score</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+
+            <tbody id="nexaPriorityTableBody">
+
+                <tr>
+                    <td colspan="5" class="nexa-priority-loading">
+                        Loading equipment priorities…
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+    </main>
+
+</div>
+
+
+<script src="/predict.js"></script>
+
+<script src="/sidebar.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

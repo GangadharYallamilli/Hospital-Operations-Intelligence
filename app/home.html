@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MedaNexa — AI-Powered Hospital Intelligence</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+
+<body class="medanexa-public-page">
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="public-navbar">
+
+    <div class="public-navbar-inner">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="/home.html"
+            class="public-brand"
+        >
+
+            <span class="public-brand-icon">
+
+                <svg
+                    viewBox="0 0 64 64"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <path
+                        d="M25 5
+                           H39
+                           V25
+                           H59
+                           V39
+                           H39
+                           V59
+                           H25
+                           V39
+                           H5
+                           V25
+                           H25
+                           Z"
+                        fill="#16A085"
+                    />
+
+                    <path
+                        d="M12 37
+                           L22 37
+                           L28 27
+                           L35 43
+                           L44 21
+                           L51 21"
+                        fill="none"
+                        stroke="#FFFFFF"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+
+                    <circle
+                        cx="51"
+                        cy="21"
+                        r="3"
+                        fill="#E8F6F3"
+                    />
+
+                </svg>
+
+            </span>
+
+
+            <span class="public-brand-name">
+                MedaNexa
+            </span>
+
+        </a>
+
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="public-nav">
+
+            <a
+                href="#home"
+                class="active"
+            >
+                Home
+            </a>
+
+            <a href="#platform">
+                Platform
+            </a>
+
+            <a href="#insights">
+                Insights
+            </a>
+
+            <a href="#copilot">
+                Copilot
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </nav>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="public-nav-actions">
+
+            <a
+                href="/login.html"
+                class="public-signin"
+            >
+                Sign In
+            </a>
+
+            <a
+                href="/register.html"
+                class="public-get-started"
+            >
+                Get Started
+            </a>
+
+        </div>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<main id="home">
+
+
+<section class="medanexa-hero">
+
+    <div class="medanexa-hero-content">
+
+        <span class="hero-label">
+            HOSPITAL INTELLIGENCE, REIMAGINED
+        </span>
+
+        <h1 class="hero-typing-title">
+            <span class="typing-line">Transform</span>
+            <span class="typing-line">Hospital Data</span>
+            <span class="typing-line hero-dark-line">Into Smarter</span>
+            <span class="typing-line hero-dark-line">Decisions.</span>
+        </h1>
+
+        <p class="hero-description">
+            Turn complex hospital operations into clear insights, intelligent predictions and actionable decisions.
+        </p>
+
+        <div class="hero-tagline">
+            Understand. Predict. Optimize.
+        </div>
+
+        <div class="hero-actions">
+            <a href="/register.html" class="hero-primary-button">
+                Get Started
+                <span>→</span>
+            </a>
+            <a href="#platform" class="hero-secondary-button">
+                Explore Platform
+            </a>
+        </div>
+
+        <div class="hero-trust">
+            <span class="trust-dot"></span>
+            Built for modern hospital operations
+        </div>
+
+    </div>
+
+    <div class="medanexa-hero-visual">
+
+        <div class="hero-dashboard-card">
+
+            <div class="hero-dashboard-header">
+                <div>
+                    <span>MEDANEXA PULSE</span>
+                    <strong>Hospital at a Glance</strong>
+                </div>
+                <div class="hero-live-status">
+                    <span></span>
+                    Live
+                </div>
+            </div>
+
+            <div class="hero-kpi-grid">
+                <div class="hero-kpi">
+                    <span>Admissions</span>
+                    <strong>1,284</strong>
+                    <small>+8.4%</small>
+                </div>
+                <div class="hero-kpi">
+                    <span>Occupancy</span>
+                    <strong>82%</strong>
+                    <small>Stable</small>
+                </div>
+                <div class="hero-kpi">
+                    <span>Avg. LOS</span>
+                    <strong>4.6</strong>
+                    <small>days</small>
+                </div>
+            </div>
+
+            <div class="hero-chart-card">
+                <div class="hero-chart-title">
+                    <span>Bed Demand</span>
+                    <small>7 Days</small>
+                </div>
+                <div class="hero-chart">
+                    <div class="chart-grid-line line-one"></div>
+                    <div class="chart-grid-line line-two"></div>
+                    <div class="chart-grid-line line-three"></div>
+                    <svg class="hero-demand-chart" viewBox="0 0 520 170" preserveAspectRatio="none" aria-label="Seven day bed demand trend">
+                        <defs>
+                            <linearGradient id="bedDemandGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#16A085" stop-opacity="0.24"></stop>
+                                <stop offset="100%" stop-color="#16A085" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 138 C 25 132, 42 126, 65 125 C 87 124, 101 130, 119 124 C 140 117, 151 108, 174 111 C 194 114, 207 102, 226 99 C 246 95, 259 101, 278 96 C 298 91, 310 81, 332 82 C 352 84, 365 73, 385 69 C 405 65, 416 75, 437 67 C 458 59, 472 50, 491 52 C 503 53, 512 49, 520 50 L 520 170 L 0 170 Z" fill="url(#bedDemandGradient)"></path>
+                        <path d="M 0 138 C 25 132, 42 126, 65 125 C 87 124, 101 130, 119 124 C 140 117, 151 108, 174 111 C 194 114, 207 102, 226 99 C 246 95, 259 101, 278 96 C 298 91, 310 81, 332 82 C 352 84, 365 73, 385 69 C 405 65, 416 75, 437 67 C 458 59, 472 50, 491 52 C 503 53, 512 49, 520 50" fill="none" stroke="#16A085" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="hero-signals">
+                <div>
+                    <span class="signal-status warning"></span>
+                    <div>
+                        <strong>Equipment Attention</strong>
+                        <small>3 assets require review</small>
+                    </div>
+                </div>
+                <div>
+                    <span class="signal-status success"></span>
+                    <div>
+                        <strong>Appointment Performance</strong>
+                        <small>94% completed as scheduled</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hero-decoration hero-decoration-one"></div>
+        <div class="hero-decoration hero-decoration-two"></div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PLATFORM
+     ===================================================== -->
+
+<section
+    id="platform"
+    class="public-section platform-section"
+>
+
+
+    <div class="section-heading">
+
+        <span>
+            THE MEDANEXA PLATFORM
+        </span>
+
+        <h2>
+            Intelligence across
+            every hospital operation.
+        </h2>
+
+        <p>
+            One connected platform for understanding,
+            predicting and optimizing hospital performance.
+        </p>
+
+    </div>
+
+
+    <div class="platform-grid">
+
+
+        <article class="platform-card">
+
+            <div class="platform-number">
+                01
+            </div>
+
+            <h3>
+                MedaNexa Pulse
+            </h3>
+
+            <p>
+                Your hospital command center for
+                understanding what's happening now.
+            </p>
+
+            <a href="/login.html">
+                Explore Pulse →
+            </a>
+
+        </article>
+
+
+        <article class="platform-card">
+
+            <div class="platform-number">
+                02
+            </div>
+
+            <h3>
+                NexaSight
+            </h3>
+
+            <p>
+                Operational analytics that reveal
+                trends, performance and opportunities.
+            </p>
+
+            <a href="/login.html">
+                Explore Sight →
+            </a>
+
+        </article>
+
+
+        <article class="platform-card">
+
+            <div class="platform-number">
+                03
+            </div>
+
+            <h3>
+                NexaPredict
+            </h3>
+
+            <p>
+                Predict admissions, bed demand and
+                equipment risks before they become problems.
+            </p>
+
+            <a href="/login.html">
+                Explore Predict →
+            </a>
+
+        </article>
+
+
+        <article class="platform-card">
+
+            <div class="platform-number">
+                04
+            </div>
+
+            <h3>
+                NexaDocs
+            </h3>
+
+            <p>
+                Turn hospital reports and documents
+                into searchable operational intelligence.
+            </p>
+
+            <a href="/login.html">
+                Explore Docs →
+            </a>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INSIGHTS
+     ===================================================== -->
+
+<section
+    id="insights"
+    class="public-section insights-section"
+>
+
+
+    <div class="section-heading">
+
+        <span>
+            OPERATIONAL INTELLIGENCE
+        </span>
+
+        <h2>
+            From raw data to
+            meaningful decisions.
+        </h2>
+
+    </div>
+
+
+    <div class="insight-flow">
+
+
+        <div class="insight-step">
+
+            <span>
+                01
+            </span>
+
+            <strong>
+                Understand
+            </strong>
+
+            <p>
+                Bring hospital datasets and reports
+                together in one intelligent workspace.
+            </p>
+
+        </div>
+
+
+        <div class="insight-connector"></div>
+
+
+        <div class="insight-step">
+
+            <span>
+                02
+            </span>
+
+            <strong>
+                Predict
+            </strong>
+
+            <p>
+                Use predictive models to anticipate
+                demand, risk and operational changes.
+            </p>
+
+        </div>
+
+
+        <div class="insight-connector"></div>
+
+
+        <div class="insight-step">
+
+            <span>
+                03
+            </span>
+
+            <strong>
+                Optimize
+            </strong>
+
+            <p>
+                Turn intelligence into clear
+                operational priorities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     COPILOT
+     ===================================================== -->
+
+<section
+    id="copilot"
+    class="public-section copilot-section"
+>
+
+
+    <div class="copilot-preview">
+
+
+        <div class="copilot-preview-header">
+
+            <div>
+
+                <span>
+                    NEXACOPILOT
+                </span>
+
+                <strong>
+                    Ask. Explore. Understand.
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="copilot-question">
+
+            Ask a question about your uploaded hospital data.
+
+        </div>
+
+
+        <div class="copilot-answer">
+
+            <div class="copilot-answer-label">
+                NexaCopilot
+            </div>
+
+            <p>
+                NexaCopilot answers from analyzed dataset metrics or retrieved report passages.
+            </p>
+
+            <small>
+                Answers include the source used.
+            </small>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="copilot-content">
+
+        <span>
+            NEXACOPILOT
+        </span>
+
+        <h2>
+            Ask your hospital data.
+        </h2>
+
+        <p>
+            Get answers grounded in your hospital's
+            operational data and reports.
+        </p>
+
+        <a
+            href="/login.html"
+            class="hero-primary-button"
+        >
+            Explore Copilot →
+        </a>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+     ===================================================== -->
+
+<section
+    id="about"
+    class="public-section about-section"
+>
+
+
+    <div class="section-heading">
+
+        <span>
+            ABOUT MEDANEXA
+        </span>
+
+        <h2>
+            Built for smarter
+            hospital operations.
+        </h2>
+
+    </div>
+
+
+    <div class="about-grid">
+
+
+        <div>
+
+            <strong>
+                UNDERSTAND
+            </strong>
+
+            <p>
+                See your operations clearly.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                PREDICT
+            </strong>
+
+            <p>
+                Anticipate future demand.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                OPTIMIZE
+            </strong>
+
+            <p>
+                Make better operational decisions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="developer-team">
+
+    <div class="developer-team-label">
+        BUILT BY
+    </div>
+
+    <h3>
+        MedaNexa Developer Team
+    </h3>
+
+    <p>
+        Designed and developed for intelligent
+        hospital operations.
+    </p>
+
+    <div class="developer-names">
+
+        <div class="developer-member">
+            <strong>Gangadhar Yallamilli</strong>
+        </div>
+
+        <div class="developer-member">
+            <strong>Vennavaram Nithin Reddy</strong>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+     ===================================================== -->
+
+<section
+    id="contact"
+    class="public-section contact-section"
+>
+
+
+    <div class="section-heading">
+
+        <span>
+            CONTACT
+        </span>
+
+        <h2>
+            Let's Connect
+        </h2>
+
+        <p>
+            Tell us how MedaNexa can support your
+            hospital operations.
+        </p>
+
+    </div>
+
+
+    <div class="contact-form contact-placeholder" role="status">
+        <p>Contact submissions are not enabled in this local deployment.</p>
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="public-footer">
+
+    <div class="footer-brand">
+
+        <strong>
+            MedaNexa
+        </strong>
+
+        <span>
+            AI-Powered Hospital Intelligence
+        </span>
+
+    </div>
+
+
+    <div class="footer-tagline">
+        Understand. Predict. Optimize.
+    </div>
+
+
+    <div class="footer-copyright">
+        © 2026 MedaNexa. All rights reserved.
+    </div>
+
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const navLinks = document.querySelectorAll(".public-nav a");
+
+    const sections = [
+        document.getElementById("home"),
+        document.getElementById("platform"),
+        document.getElementById("insights"),
+        document.getElementById("copilot"),
+        document.getElementById("about"),
+        document.getElementById("contact")
+    ].filter(Boolean);
+
+
+    function setActive(link) {
+
+        navLinks.forEach(function (item) {
+            item.classList.remove("active");
+        });
+
+        if (link) {
+            link.classList.add("active");
+        }
+    }
+
+
+    navLinks.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            setActive(link);
+
+        });
+
+    });
+
+
+    const observer = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    const id = entry.target.id;
+
+                    const activeLink =
+                        document.querySelector(
+                            '.public-nav a[href="#' + id + '"]'
+                        );
+
+                    setActive(activeLink);
+
+                }
+
+            });
+
+        },
+        {
+            rootMargin: "-35% 0px -55% 0px",
+            threshold: 0
+        }
+    );
+
+
+    sections.forEach(function (section) {
+
+        observer.observe(section);
+
+    });
+
+
+});
+</script>
+
+
+</body>
+
+</html>
+

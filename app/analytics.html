@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        MedaNexa — NexaSight
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css?v=nexa-dashboard-3">
+
+</head>
+
+
+<body class="workspace-page medanexa-workspace">
+
+
+<div class="app workspace-shell">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+        <aside class="workspace-sidebar" aria-label="Workspace navigation">
+        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Close navigation" aria-expanded="true" aria-controls="workspaceNavigation">
+            <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <a class="workspace-brand" href="/index.html" aria-label="MedaNexa Pulse">
+            <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+            <span><strong>MedaNexa</strong><small>Hospital Intelligence</small></span>
+        </a>
+        <nav class="workspace-nav" id="workspaceNavigation" aria-label="Workspace">
+            <a href="/index.html" aria-label="Pulse" data-short-label="P"><span>Pulse</span></a>
+            <a href="/analytics.html" aria-label="NexaSight" data-short-label="S"><span>NexaSight</span></a>
+            <a href="/predict.html" aria-label="NexaPredict" data-short-label="P"><span>NexaPredict</span></a>
+            <a href="/documents.html" aria-label="NexaDocs" data-short-label="D"><span>NexaDocs</span></a>
+            <a href="/copilot.html" aria-label="NexaCopilot" data-short-label="C"><span>NexaCopilot</span></a>
+            <a href="/command.html" aria-label="NexaCommand" data-short-label="M"><span>NexaCommand</span></a>
+        </nav>
+        <div class="workspace-sidebar-footer">
+            <div class="workspace-user">
+                <div class="workspace-user-avatar" id="userAvatar">A</div>
+                <div><strong id="userName">Hospital Admin</strong><small id="userHospital">Hospital Workspace</small></div>
+            </div>
+            <button id="logoutButton" class="workspace-logout" type="button" aria-label="Sign out">Sign out</button>
+        </div>
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="workspace-main">
+
+
+        <section
+            id="analyticsPage"
+            class="page active-page">
+
+
+            <!-- HEADER -->
+
+            <header class="workspace-header">
+                <div>
+                    <span class="workspace-eyebrow">NEXASIGHT</span>
+                    <h1>See What's Happening</h1>
+                    <p>Explore operational performance across your hospital.</p>
+                </div>
+            </header>
+
+            <div class="analytics-intro card">
+
+
+                <div>
+
+                    <span class="eyebrow">
+                        HOSPITAL ANALYTICS
+                    </span>
+
+
+                    <h2>
+                        Operational Intelligence
+                    </h2>
+
+
+                    <p>
+                        The dashboard adapts its KPIs, visualizations and insights to the fields detected in your uploaded dataset.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="/index.html"
+                    class="primary-button">
+
+                    Upload New Dataset
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DYNAMIC ANALYTICS
+            ================================================== -->
+
+            <div
+                id="dynamicAnalytics"
+                class="dynamic-analytics">
+
+
+                <div class="analytics-empty card">
+
+
+                    <div class="analytics-empty-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path
+                                d="M5 20V10M12 20V4M19 20V7"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"/>
+
+                        </svg>
+
+                    </div>
+
+
+                    <h2>
+                        No Dataset Analyzed Yet
+                    </h2>
+
+
+                    <p>
+                        Upload a hospital CSV or XLSX dataset from
+                        MedaNexa Pulse to generate analytics here.
+                    </p>
+
+
+                    <a
+                        href="/index.html"
+                        class="primary-button">
+
+                        Upload Hospital Dataset
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- NEXASIGHT JAVASCRIPT -->
+
+<script src="/analytics.js?v=nexa-dashboard-4"></script>
+<script src="/sidebar.js"></script>
+
+</body>
+
+</html>
+
+

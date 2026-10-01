@@ -3,9 +3,17 @@ __pycache__/
 .venv/
 venv/
 .env
+.env.*
+!.env.example
 .ipynb_checkpoints/
 *.pkl
 *.joblib
 data/raw/*
 data/processed/*
 .vscode/
+database/auth.db
+backend/documents/uploads/
+backend/documents/processed/
+temp/
+
+.venv-*/

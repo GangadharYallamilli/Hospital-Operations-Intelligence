@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NexaCopilot | MedaNexa</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="workspace-page">
+
+<div class="workspace-shell">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="workspace-sidebar" aria-label="Workspace navigation">
+
+        <button
+            class="sidebar-toggle"
+            id="sidebarToggle"
+            type="button"
+            aria-label="Close navigation"
+            aria-expanded="true"
+            aria-controls="workspaceNavigation">
+
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+
+        </button>
+
+
+        <a
+            class="workspace-brand"
+            href="/index.html"
+            aria-label="MedaNexa Pulse">
+
+            <span class="brand-mark" aria-hidden="true">
+                <span></span>
+                <span></span>
+            </span>
+
+            <span>
+                <strong>MedaNexa</strong>
+                <small>Hospital Intelligence</small>
+            </span>
+
+        </a>
+
+
+        <nav
+            class="workspace-nav"
+            id="workspaceNavigation"
+            aria-label="Workspace">
+
+            <a
+                href="/index.html"
+                aria-label="Pulse"
+                data-short-label="P">
+                <span>Pulse</span>
+            </a>
+
+            <a
+                href="/analytics.html"
+                aria-label="NexaSight"
+                data-short-label="S">
+                <span>NexaSight</span>
+            </a>
+
+            <a
+                href="/predict.html"
+                aria-label="NexaPredict"
+                data-short-label="P">
+                <span>NexaPredict</span>
+            </a>
+
+            <a
+                href="/documents.html"
+                aria-label="NexaDocs"
+                data-short-label="D">
+                <span>NexaDocs</span>
+            </a>
+
+            <a
+                href="/copilot.html"
+                aria-label="NexaCopilot"
+                data-short-label="C">
+                <span>NexaCopilot</span>
+            </a>
+
+            <a
+                href="/command.html"
+                aria-label="NexaCommand"
+                data-short-label="M">
+                <span>NexaCommand</span>
+            </a>
+
+        </nav>
+
+
+        <div class="workspace-sidebar-footer">
+
+            <div class="workspace-user">
+
+                <div
+                    class="workspace-user-avatar"
+                    id="userAvatar">
+                    A
+                </div>
+
+                <div>
+                    <strong id="userName">
+                        Hospital Admin
+                    </strong>
+
+                    <small id="userHospital">
+                        Hospital Workspace
+                    </small>
+                </div>
+
+            </div>
+
+
+            <button
+                id="logoutButton"
+                class="workspace-logout"
+                type="button"
+                aria-label="Sign out">
+
+                Sign out
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="workspace-main">
+
+        <header class="workspace-header">
+
+            <div>
+
+                <span class="workspace-eyebrow">
+                    NEXACOPILOT
+                </span>
+
+                <h1>
+                    Ask your hospital intelligence.
+                </h1>
+
+                <p>
+                    Ask operational questions using the hospital
+                    database or get answers grounded in processed
+                    hospital reports.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             COPILOT PANEL
+        ========================== -->
+
+        <section class="workspace-panel copilot-panel">
+
+
+            <!-- INTRO -->
+
+            <div class="copilot-intro">
+
+                <span
+                    class="copilot-mark"
+                    aria-hidden="true">
+                    MN
+                </span>
+
+                <div>
+
+                    <span class="section-label">
+                        MEDANEXA ASSISTANT
+                    </span>
+
+                    <h2>
+                        What would you like to understand?
+                    </h2>
+
+                    <p>
+                        Operational questions use the hospital
+                        database first. Uploaded dataset analytics
+                        are used as a fallback when database coverage
+                        is unavailable. Document questions use the
+                        existing retrieval pipeline.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUGGESTED QUESTIONS -->
+
+            <div
+                class="copilot-suggestions"
+                aria-label="Suggested questions">
+
+                <button
+                    type="button"
+                    class="suggestion-button">
+
+                    What are the major operational issues?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="suggestion-button">
+
+                    Which department has the highest admissions?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="suggestion-button">
+
+                    What are the equipment risks?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="suggestion-button">
+
+                    Summarize the uploaded document.
+
+                </button>
+
+            </div>
+
+
+            <!-- SOURCE SELECTOR -->
+
+            <div class="copilot-mode">
+
+                <label for="copilotDocument">
+                    Answer using
+                </label>
+
+
+                <select id="copilotDocument">
+
+                    <!--
+                        Empty value is intentional.
+
+                        This means:
+                        - No document selected
+                        - /copilot/ask is used
+                        - Hospital SQL database is checked first
+                        - Dataset becomes fallback
+                    -->
+
+                    <option value="">
+                        Analyzed dataset
+                    </option>
+
+                </select>
+
+
+                <span id="copilotSourceHint">
+                    Hospital database analytics are prioritized.
+                    Analyzed dataset metrics are used as a fallback.
+                </span>
+
+            </div>
+
+
+            <!-- MESSAGE AREA -->
+
+            <div
+                id="copilotMessages"
+                class="copilot-messages"
+                aria-live="polite">
+
+                <div class="copilot-message assistant">
+
+                    <strong>
+                        MedaNexa
+                    </strong>
+
+                    <p>
+                        Ask a hospital operations question to begin.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION FORM -->
+
+            <form
+                id="copilotForm"
+                class="copilot-form">
+
+                <label
+                    class="sr-only"
+                    for="copilotQuestion">
+
+                    Ask a hospital operations question
+
+                </label>
+
+
+                <textarea
+                    id="copilotQuestion"
+                    rows="2"
+                    maxlength="1000"
+                    placeholder="Ask a question about hospital operations…"
+                    required>
+                </textarea>
+
+
+                <button
+                    id="copilotSendButton"
+                    class="primary-button"
+                    type="submit">
+
+                    Ask
+
+                </button>
+
+            </form>
+
+
+            <!-- STATUS -->
+
+            <p
+                id="copilotStatus"
+                class="workspace-status"
+                role="status"
+                aria-live="polite">
+            </p>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!--
+    Version query forces the browser to load the latest
+    copilot.js instead of an older cached version.
+-->
+
+<script src="/copilot.js?v=2"></script>
+
+<script src="/sidebar.js"></script>
+
+</body>
+</html>

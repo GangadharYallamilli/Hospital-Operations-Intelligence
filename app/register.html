@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MedaNexa — Create Account</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+
+<body class="medanexa-auth-page">
+
+
+<div class="medanexa-auth-container">
+
+
+    <!-- =====================================================
+         LEFT BRAND PANEL
+         ===================================================== -->
+
+    <section class="medanexa-brand-panel">
+
+        <div class="medanexa-brand-content">
+
+            <div class="nexa-logo">
+
+                <svg
+                    viewBox="0 0 64 64"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <path
+                        d="M25 5
+                           H39
+                           V25
+                           H59
+                           V39
+                           H39
+                           V59
+                           H25
+                           V39
+                           H5
+                           V25
+                           H25
+                           Z"
+                        fill="#16A085"
+                    />
+
+                    <path
+                        d="M12 37
+                           L22 37
+                           L28 27
+                           L35 43
+                           L44 21
+                           L51 21"
+                        fill="none"
+                        stroke="#FFFFFF"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+
+                    <circle
+                        cx="51"
+                        cy="21"
+                        r="3"
+                        fill="#E8F6F3"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <div class="medanexa-wordmark">
+                MedaNexa
+            </div>
+
+
+            <div class="medanexa-subtitle">
+                AI-Powered Hospital Intelligence
+            </div>
+
+
+            <div class="medanexa-tagline">
+                Understand. Predict. Optimize.
+            </div>
+
+
+            <p class="medanexa-description">
+
+                Create your hospital workspace and turn
+                operational data into intelligent decisions.
+
+            </p>
+
+
+            <div class="medanexa-capabilities">
+
+                <div class="capability-item">
+
+                    <div class="capability-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path d="M4 19V10" />
+                            <path d="M10 19V5" />
+                            <path d="M16 19V8" />
+                            <path d="M22 19V3" />
+
+                        </svg>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Understand
+                        </strong>
+
+                        <span>
+                            See your hospital operations clearly.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="capability-item">
+
+                    <div class="capability-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path d="M4 17L9 12L13 15L20 6" />
+                            <path d="M15 6H20V11" />
+
+                        </svg>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Predict
+                        </strong>
+
+                        <span>
+                            Anticipate demand and operational risks.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="capability-item">
+
+                    <div class="capability-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="3"
+                            />
+
+                            <path
+                                d="M19.4 15
+                                   A8 8 0 0 0 19.4 9"
+                            />
+
+                            <path
+                                d="M4.6 9
+                                   A8 8 0 0 0 4.6 15"
+                            />
+
+                        </svg>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Optimize
+                        </strong>
+
+                        <span>
+                            Make better operational decisions.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         REGISTER PANEL
+         ===================================================== -->
+
+    <section class="medanexa-login-panel">
+
+        <div class="medanexa-login-card">
+
+
+            <div class="medanexa-login-header">
+
+                <span class="medanexa-eyebrow">
+                    HOSPITAL ADMIN PORTAL
+                </span>
+
+
+                <h1>
+                    Create account
+                </h1>
+
+
+                <p>
+                    Set up your hospital workspace.
+                </p>
+
+            </div>
+
+
+
+            <form id="registerForm">
+
+
+                <!-- HOSPITAL NAME -->
+
+                <div class="medanexa-form-group">
+
+                    <label for="hospitalName">
+                        Hospital Name
+                    </label>
+
+                    <div class="medanexa-input-wrapper">
+
+                        <input
+                            type="text"
+                            id="hospitalName"
+                            placeholder="Enter hospital name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ADMIN NAME -->
+
+                <div class="medanexa-form-group">
+
+                    <label for="adminName">
+                        Administrator Name
+                    </label>
+
+                    <div class="medanexa-input-wrapper">
+
+                        <input
+                            type="text"
+                            id="adminName"
+                            placeholder="Enter administrator name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="medanexa-form-group">
+
+                    <label for="registerEmail">
+                        Email
+                    </label>
+
+                    <div class="medanexa-input-wrapper">
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            placeholder="admin@hospital.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="medanexa-form-group">
+
+                    <label for="registerPassword">
+                        Password
+                    </label>
+
+                    <div class="medanexa-input-wrapper">
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="registerPassword"
+                            aria-label="Show password"
+                        >
+
+                            <svg
+                                class="eye-open"
+                                viewBox="0 0 24 24"
+                            >
+
+                                <path
+                                    d="M2 12
+                                       C5 7 8 5 12 5
+                                       C16 5 19 7 22 12
+                                       C19 17 16 19 12 19
+                                       C8 19 5 17 2 12Z"
+                                />
+
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="3"
+                                />
+
+                            </svg>
+
+
+                            <svg
+                                class="eye-closed"
+                                viewBox="0 0 24 24"
+                            >
+
+                                <path d="M3 3L21 21" />
+
+                                <path
+                                    d="M10.6 6.1
+                                       A10.8 10.8 0 0 1 12 6
+                                       C16 6 19 8 22 12
+                                       C20.9 13.7 19.7 15
+                                       18.2 16"
+                                />
+
+                                <path
+                                    d="M6.2 6.2
+                                       C4.6 7.4 3.2 9.2 2 12
+                                       C5 16 8 18 12 18
+                                       C13.2 18 14.3 17.8 15.3 17.4"
+                                />
+
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- PASSWORD REQUIREMENTS -->
+
+                    <div class="password-requirements">
+
+                        <div
+                            id="lengthRequirement"
+                            class="password-rule"
+                        >
+                            <span>○</span>
+                            At least 8 characters
+                        </div>
+
+                        <div
+                            id="numberRequirement"
+                            class="password-rule"
+                        >
+                            <span>○</span>
+                            At least 2 numbers
+                        </div>
+
+                        <div
+                            id="specialRequirement"
+                            class="password-rule"
+                        >
+                            <span>○</span>
+                            At least 1 special character
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="medanexa-form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="medanexa-input-wrapper">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirm your password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="confirmPassword"
+                            aria-label="Show password"
+                        >
+
+                            <svg
+                                class="eye-open"
+                                viewBox="0 0 24 24"
+                            >
+
+                                <path
+                                    d="M2 12
+                                       C5 7 8 5 12 5
+                                       C16 5 19 7 22 12
+                                       C19 17 16 19 12 19
+                                       C8 19 5 17 2 12Z"
+                                />
+
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="3"
+                                />
+
+                            </svg>
+
+
+                            <svg
+                                class="eye-closed"
+                                viewBox="0 0 24 24"
+                            >
+
+                                <path d="M3 3L21 21" />
+
+                                <path
+                                    d="M10.6 6.1
+                                       A10.8 10.8 0 0 1 12 6
+                                       C16 6 19 8 22 12
+                                       C20.9 13.7 19.7 15
+                                       18.2 16"
+                                />
+
+                                <path
+                                    d="M6.2 6.2
+                                       C4.6 6.2 3.2 9.2 2 12
+                                       C5 16 8 18 12 18
+                                       C13.2 18 14.3 17.8 15.3 17.4"
+                                />
+
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="registerStatus"
+                    class="auth-status"
+                ></div>
+
+
+
+                <!-- CREATE ACCOUNT -->
+
+                <button
+                    type="submit"
+                    class="medanexa-signin-button"
+                >
+
+                    <span>
+                        Create Account
+                    </span>
+
+                    <span class="signin-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- LOGIN -->
+
+            <div class="medanexa-create-account">
+
+                <span>
+                    Already have an account?
+                </span>
+
+                <a href="/login.html">
+                    Sign In
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<script src="/auth.js"></script>
+
+</body>
+
+</html>

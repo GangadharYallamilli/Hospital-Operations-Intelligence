@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NexaCommand | MedaNexa</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+</head>
+
+
+<body class="workspace-page">
+
+<div class="workspace-shell">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        class="workspace-sidebar"
+        aria-label="Workspace navigation"
+    >
+
+        <button
+            class="sidebar-toggle"
+            id="sidebarToggle"
+            type="button"
+            aria-label="Close navigation"
+            aria-expanded="true"
+            aria-controls="workspaceNavigation"
+        >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+
+
+        <!-- MEDANEXA BRAND -->
+
+        <a
+            class="workspace-brand"
+            href="/index.html"
+            aria-label="MedaNexa Pulse"
+        >
+
+            <span
+                class="brand-mark"
+                aria-hidden="true"
+            >
+                <span></span>
+                <span></span>
+            </span>
+
+            <span class="workspace-brand-text">
+
+                <strong>
+                    MedaNexa
+                </strong>
+
+                <small>
+                    Hospital Intelligence
+                </small>
+
+            </span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav
+            class="workspace-nav"
+            id="workspaceNavigation"
+            aria-label="Workspace"
+        >
+
+            <a
+                href="/index.html"
+                aria-label="Pulse"
+                data-short-label="P"
+            >
+                <span>Pulse</span>
+            </a>
+
+
+            <a
+                href="/analytics.html"
+                aria-label="NexaSight"
+                data-short-label="S"
+            >
+                <span>NexaSight</span>
+            </a>
+
+
+            <a
+                href="/predict.html"
+                aria-label="NexaPredict"
+                data-short-label="P"
+            >
+                <span>NexaPredict</span>
+            </a>
+
+
+            <a
+                href="/documents.html"
+                aria-label="NexaDocs"
+                data-short-label="D"
+            >
+                <span>NexaDocs</span>
+            </a>
+
+
+            <a
+                href="/copilot.html"
+                aria-label="NexaCopilot"
+                data-short-label="C"
+            >
+                <span>NexaCopilot</span>
+            </a>
+
+
+            <a
+                href="/command.html"
+                aria-label="NexaCommand"
+                data-short-label="M"
+                class="active"
+            >
+                <span>NexaCommand</span>
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR FOOTER -->
+
+        <div class="workspace-sidebar-footer">
+
+            <div class="workspace-user">
+
+                <div
+                    class="workspace-user-avatar"
+                    id="userAvatar"
+                >
+                    A
+                </div>
+
+                <div>
+
+                    <strong id="userName">
+                        Hospital Admin
+                    </strong>
+
+                    <small id="userHospital">
+                        Hospital Workspace
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="logoutButton"
+                class="workspace-logout"
+                type="button"
+                aria-label="Sign out"
+            >
+                Sign out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="workspace-main">
+
+
+        <!-- PAGE HEADER -->
+
+        <header class="workspace-header">
+
+            <div>
+
+                <span class="workspace-eyebrow">
+                    NEXACOMMAND
+                </span>
+
+                <h1>
+                    Power BI Analytics.
+                </h1>
+
+                <p>
+                    Interactive hospital intelligence.
+                </p>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             POWER BI INTRO / AVAILABILITY MESSAGE
+        ================================================== -->
+
+        <section class="command-intro-card">
+
+            <span class="section-label">
+                POWER BI ANALYTICS
+            </span>
+
+            <h2>
+                NexaCommand — Power BI Analytics
+            </h2>
+
+            <p>
+                Preconfigured Power BI visualizations are available
+                for demonstration. Dynamic Power BI analytics for
+                uploaded datasets will be available soon.
+            </p>
+
+            <div class="command-team-note">
+                — MedaNexa Team
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EXISTING POWER BI DASHBOARD
+        ================================================== -->
+
+        <section class="command-powerbi-section">
+
+            <div class="command-powerbi-header">
+
+                <div>
+
+                    <span class="section-label">
+                        POWER BI DASHBOARD
+                    </span>
+
+                    <h2>
+                        Hospital Operations Intelligence
+                    </h2>
+
+                    <p>
+                        Existing Power BI analytics dashboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="command-powerbi-frame">
+
+                <iframe
+                    title="Hospital_Operations_Intelligence"
+                    src="https://app.powerbi.com/view?r=eyJrIjoiYjY3ZjQ0MDgtOTQyZS00MzZkLTg4Y2MtYTQ2NmU0YzgyZWZhIiwidCI6ImUxNGU3M2ViLTUyNTEtNDM4OC04ZDY3LThmOWYyZTJkNWE0NiIsImMiOjEwfQ%3D%3D"
+                    frameborder="0"
+                    allowFullScreen="true"
+                >
+                </iframe>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- SIDEBAR -->
+
+<script src="/sidebar.js"></script>
+
+</body>
+
+</html>

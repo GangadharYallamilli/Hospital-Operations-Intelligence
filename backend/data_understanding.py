@@ -1,287 +1,101 @@
-# ==========================================================
-# Dynamic Data Understanding
-# ==========================================================
-# Purpose:
-# Automatically understand uploaded CSV and Excel hospital
-# datasets and detect which hospital analytics modules
-# are available.
-#
-# Supported structured files:
-# - CSV
-# - Excel (.xlsx)
-#
-# PDF and DOCX will be handled separately later through
-# the Document Intelligence module.
-# ==========================================================
-
+import re
+from pathlib import Path
 
 import pandas as pd
 
 
-# ==========================================================
-# 1. LOAD DATASET
-# ==========================================================
+def normalize_column_name(value):
+    text = str(value).strip().lower()
+    text = re.sub(r"[^a-z0-9]+", "_", text).strip("_")
+    return text or "unnamed"
+
+
+def normalize_frame_columns(frame):
+    names = []
+    counts = {}
+    for original in frame.columns:
+        name = normalize_column_name(original)
+        counts[name] = counts.get(name, 0) + 1
+        names.append(name if counts[name] == 1 else f"{name}_{counts[name]}")
+    frame.columns = names
+    return frame
+
 
 def load_dataset(file_path):
-
-    if file_path.lower().endswith(".csv"):
-
-        return pd.read_csv(file_path)
-
-    elif file_path.lower().endswith(".xlsx"):
-
-        return pd.read_excel(file_path)
-
+    path = str(file_path)
+    if path.lower().endswith(".csv"):
+        try:
+            frame = pd.read_csv(path, low_memory=False)
+        except UnicodeDecodeError:
+            frame = pd.read_csv(path, encoding="latin-1", low_memory=False)
+    elif path.lower().endswith(".xlsx"):
+        frame = pd.read_excel(path)
     else:
-
-        raise ValueError(
-            "Unsupported file format. "
-            "Only CSV and Excel files are supported."
-        )
-
-
-# ==========================================================
-# 2. NORMALIZE COLUMN NAMES
-# ==========================================================
-
-def normalize_columns(df):
-
-    columns = []
-
-    for column in df.columns:
-
-        normalized = (
-            str(column)
-            .lower()
-            .strip()
-            .replace(" ", "_")
-            .replace("-", "_")
-        )
-
-        columns.append(normalized)
-
-    return columns
+        raise ValueError("Only CSV and XLSX datasets are supported.")
+    if frame.empty:
+        raise ValueError("The uploaded dataset has no rows.")
+    return normalize_frame_columns(frame)
 
 
-# ==========================================================
-# 3. DETECT AVAILABLE HOSPITAL MODULES
-# ==========================================================
+def _contains(columns, words):
+    return [column for column in columns if any(word in column for word in words)]
 
-def detect_modules(df):
 
-    columns = normalize_columns(df)
-
+def detect_modules(frame):
+    columns = [normalize_column_name(c) for c in frame.columns]
+    joined = " ".join(columns)
     modules = []
 
-
-    # ------------------------------------------------------
-    # Admission Analytics
-    # ------------------------------------------------------
-
-    admission_keywords = [
-        "admission_id",
-        "admission_date",
-        "admission_type",
-        "discharge_date",
-        "length_of_stay"
-    ]
-
-    admission_matches = sum(
-        keyword in columns
-        for keyword in admission_keywords
-    )
-
-    if admission_matches >= 2:
-
+    admission_signals = _contains(columns, ("admission", "admit_date", "admitted", "length_of_stay", "los_days"))
+    if admission_signals or any(c in columns for c in ("admissions", "admission_count", "total_admissions")):
         modules.append("Admission Analytics")
 
-
-    # ------------------------------------------------------
-    # Appointment Analytics
-    # ------------------------------------------------------
-
-    appointment_keywords = [
-        "appointment_id",
-        "appointment_date",
-        "appointment_type",
-        "appointment_status",
-        "wait_time_days"
-    ]
-
-    appointment_matches = sum(
-        keyword in columns
-        for keyword in appointment_keywords
-    )
-
-    if appointment_matches >= 2:
-
+    appointment_signals = _contains(columns, ("appointment", "appt_", "no_show", "noshow"))
+    if appointment_signals:
         modules.append("Appointment Analytics")
 
-
-    # ------------------------------------------------------
-    # Bed & Capacity Analytics
-    # ------------------------------------------------------
-
-    bed_keywords = [
-        "total_beds",
-        "occupied_beds",
-        "available_beds",
-        "occupancy_rate"
-    ]
-
-    bed_matches = sum(
-        keyword in columns
-        for keyword in bed_keywords
-    )
-
-    if bed_matches >= 2:
-
+    bed_signals = _contains(columns, ("bed", "occupancy", "capacity"))
+    if bed_signals and any(any(token in c for token in ("total", "occupied", "available", "occupancy", "capacity")) for c in bed_signals):
         modules.append("Bed & Capacity Analytics")
 
-
-    # ------------------------------------------------------
-    # Equipment Analytics
-    # ------------------------------------------------------
-
-    equipment_keywords = [
-        "equipment_id",
-        "equipment_type",
-        "equipment_status",
-        "usage_hours",
-        "maintenance_count",
-        "failure_count"
-    ]
-
-    equipment_matches = sum(
-        keyword in columns
-        for keyword in equipment_keywords
-    )
-
-    if equipment_matches >= 2:
-
+    equipment_identity = _contains(columns, ("equipment", "device", "asset"))
+    equipment_signals = _contains(columns, ("failure", "maintenance", "usage"))
+    equipment_attributes = _contains(columns, ("status", "state", "type", "condition", "failure", "maintenance", "usage"))
+    if equipment_identity or equipment_signals or (equipment_identity and equipment_attributes):
         modules.append("Equipment Analytics")
 
-
-    # ------------------------------------------------------
-    # Department Analytics
-    # ------------------------------------------------------
-
-    if "department_id" in columns:
-
+    if _contains(columns, ("department", "dept_")):
         modules.append("Department Analytics")
-
 
     return modules
 
 
-# ==========================================================
-# 4. PROFILE DATASET
-# ==========================================================
-
-def profile_dataset(df):
-
-    profile = {
-
-        "rows": len(df),
-
-        "columns": len(df.columns),
-
-        "column_names": df.columns.tolist(),
-
-        "data_types": {
-            column: str(dtype)
-            for column, dtype in df.dtypes.items()
-        },
-
-        "missing_values": {
-            column: int(value)
-            for column, value in df.isnull().sum().items()
-        },
-
-        "duplicate_rows": int(
-            df.duplicated().sum()
-        )
+def profile_dataset(frame):
+    dates = []
+    for column in frame.columns:
+        name = str(column).lower()
+        if any(token in name for token in ("date", "time", "timestamp")):
+            parsed = pd.to_datetime(frame[column], errors="coerce")
+            if len(frame) and parsed.notna().mean() >= 0.7:
+                dates.append(column)
+    return {
+        "rows": int(len(frame)),
+        "columns": int(len(frame.columns)),
+        "column_names": [str(c) for c in frame.columns],
+        "data_types": {str(c): str(dtype) for c, dtype in frame.dtypes.items()},
+        "missing_values": {str(c): int(value) for c, value in frame.isna().sum().items()},
+        "duplicate_rows": int(frame.duplicated().sum()),
+        "date_columns": dates,
+        "numeric_columns": [str(c) for c in frame.select_dtypes(include="number").columns],
     }
 
-    return profile
-
-
-# ==========================================================
-# 5. UNDERSTAND DATASET
-# ==========================================================
 
 def understand_dataset(file_path):
-
-    # Load dataset
-    df = load_dataset(file_path)
-
-    # Create dataset profile
-    profile = profile_dataset(df)
-
-    # Detect available modules
-    modules = detect_modules(df)
-
-    # Return complete result
-    result = {
-
+    frame = load_dataset(file_path)
+    profile = profile_dataset(frame)
+    modules = detect_modules(frame)
+    return {
         "profile": profile,
-
-        "available_modules": modules
+        "available_modules": modules,
+        "dataset_type": modules[0].replace(" Analytics", "").lower() if len(modules) == 1 else ("hospital operations" if modules else "general dataset"),
     }
-
-    return result
-
-
-# ==========================================================
-# 6. TEST THE MODULE
-# ==========================================================
-# This runs only when this Python file is executed directly.
-#
-# IMPORTANT:
-# We run the command from the project root:
-#
-# python backend/data_understanding.py
-#
-# Therefore the correct path starts with:
-#
-# data/...
-# ==========================================================
-
-if __name__ == "__main__":
-
-    datasets = {
-        "Admissions": "data/processed/admissions/admissions_clean.csv",
-        "Appointments": "data/processed/appointments/appointments_clean.csv",
-        "Beds": "data/processed/beds/beds_clean.csv",
-        "Equipment": "data/processed/equipment/equipment_clean.csv",
-        "Departments": "data/processed/departments/departments_clean.csv"
-    }
-
-    print("\n==========================================")
-    print("     HOSPITAL DATASET MODULE DETECTION")
-    print("==========================================")
-
-    for dataset_name, file_path in datasets.items():
-
-        print(f"\n\n========== {dataset_name.upper()} ==========")
-
-        try:
-
-            result = understand_dataset(file_path)
-
-            print("Rows:", result["profile"]["rows"])
-            print("Columns:", result["profile"]["columns"])
-
-            print("\nDetected Modules:")
-
-            if result["available_modules"]:
-
-                for module in result["available_modules"]:
-                    print("✓", module)
-
-            else:
-                print("No modules detected.")
-
-        except Exception as error:
-
-            print("Error:", error)

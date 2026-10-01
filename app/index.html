@@ -5,470 +5,430 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Hospital Operations Intelligence</title>
+    <title>MedaNexa — Hospital Intelligence</title>
 
     <link rel="stylesheet" href="/style.css">
 </head>
 
-<body>
 
-    <div class="app">
+<body class="workspace-page">
 
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
 
-            <div class="logo">
-                <div class="logo-icon">🏥</div>
+<div class="app workspace-shell">
 
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+        <aside class="workspace-sidebar" aria-label="Workspace navigation">
+        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Close navigation" aria-expanded="true" aria-controls="workspaceNavigation">
+            <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <a class="workspace-brand" href="/index.html" aria-label="MedaNexa Pulse">
+            <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+            <span><strong>MedaNexa</strong><small>Hospital Intelligence</small></span>
+        </a>
+        <nav class="workspace-nav" id="workspaceNavigation" aria-label="Workspace">
+            <a href="/index.html" aria-label="Pulse" data-short-label="P"><span>Pulse</span></a>
+            <a href="/analytics.html" aria-label="NexaSight" data-short-label="S"><span>NexaSight</span></a>
+            <a href="/predict.html" aria-label="NexaPredict" data-short-label="P"><span>NexaPredict</span></a>
+            <a href="/documents.html" aria-label="NexaDocs" data-short-label="D"><span>NexaDocs</span></a>
+            <a href="/copilot.html" aria-label="NexaCopilot" data-short-label="C"><span>NexaCopilot</span></a>
+            <a href="/command.html" aria-label="NexaCommand" data-short-label="M"><span>NexaCommand</span></a>
+            <!-- <a href="/powerbi.html" class="nav-item">
+    <span class="nav-label">Power BI Analytics</span> -->
+</a>
+        </nav>
+        <div class="workspace-sidebar-footer">
+            <div class="workspace-user">
+                <div class="workspace-user-avatar" id="userAvatar">A</div>
+                <div><strong id="userName">Hospital Admin</strong><small id="userHospital">Hospital Workspace</small></div>
+            </div>
+            <button id="logoutButton" class="workspace-logout" type="button" aria-label="Sign out">Sign out</button>
+        </div>
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="workspace-main">
+
+
+        <!-- =================================================
+             PULSE PAGE
+        ================================================== -->
+
+        <section
+            id="dashboardPage"
+            class="page active-page">
+
+
+            <!-- PAGE HEADER -->
+
+            <header class="workspace-header">
                 <div>
-                    <h2>Hospital Ops</h2>
-                    <span>Intelligence Platform</span>
+                    <span class="workspace-eyebrow">MEDANEXA PULSE</span>
+                    <h1>Your Hospital at a Glance</h1>
+                    <p>Understand what's happening across your hospital.</p>
                 </div>
-            </div>
+            </header>
+
+            <div class="medanexa-upload-card">
 
 
-            <nav class="navigation">
-
-                <button
-                    class="nav-item active"
-                    data-page="dashboard"
-                >
-                    <span>🏠</span>
-                    Dashboard
-                </button>
+                <div class="upload-content">
 
 
-                <button
-                    class="nav-item"
-                    data-page="analytics"
-                >
-                    <span>📊</span>
-                    Analytics
-                </button>
+                    <!-- LEFT -->
+
+                    <div class="upload-left">
 
 
-                <button
-                    class="nav-item"
-                    data-page="ml"
-                >
-                    <span>🤖</span>
-                    ML Predictions
-                </button>
+                        <div class="upload-eyebrow">
 
 
-                <button
-                    class="nav-item"
-                    data-page="documents"
-                >
-                    <span>📄</span>
-                    Documents
-                </button>
+                            <span class="upload-cloud-small">
+
+                                <svg viewBox="0 0 24 24">
+
+                                    <path
+                                        d="M7 18h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6 11a3.5 3.5 0 0 0 1 7z"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"/>
+
+                                    <path
+                                        d="M12 12v6M9.5 14.5L12 12l2.5 2.5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"/>
+
+                                </svg>
+
+                            </span>
 
 
-                <button
-                    class="nav-item"
-                    data-page="assistant"
-                >
-                    <span>💬</span>
-                    AI Assistant
-                </button>
+                            DATA INGESTION
+
+                        </div>
 
 
-                <button
-                    class="nav-item"
-                    data-page="powerbi"
-                >
-                    <span>📈</span>
-                    Power BI
-                </button>
 
-            </nav>
+                        <h2>
+
+                            Upload
+                            <span>Hospital Dataset</span>
+
+                        </h2>
 
 
-            <div class="sidebar-bottom">
-
-                <div class="system-status">
-                    <span class="status-dot"></span>
-                    System Online
-                </div>
-
-            </div>
-
-        </aside>
-
-
-        <!-- MAIN CONTENT -->
-        <main class="main-content">
-
-
-            <!-- DASHBOARD PAGE -->
-            <section
-                id="dashboardPage"
-                class="page active-page"
-            >
-
-                <div class="topbar">
-
-                    <div>
-                        <h1>Hospital Operations Dashboard</h1>
 
                         <p>
-                            Monitor hospital operations and generate
-                            data-driven insights.
+
+                            Upload a CSV or Excel dataset and MedaNexa
+                            will automatically identify its structure,
+                            analyze key metrics, and generate actionable
+                            insights.
+
                         </p>
+
+
                     </div>
 
-                </div>
 
 
-                <!-- Upload -->
-                <div class="card">
+                    <!-- RIGHT -->
 
-                    <h2>Upload Hospital Dataset</h2>
-
-                    <p class="description">
-
-                        Upload CSV or Excel data to automatically
-                        understand and analyze hospital operations.
-
-                    </p>
+                    <div
+                        class="upload-dropzone"
+                        id="uploadDropzone"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Choose or drop a CSV or XLSX hospital dataset">
 
 
-                    <div class="upload-area">
+                        <div class="upload-cloud-icon">
+
+
+                            <svg viewBox="0 0 64 64">
+
+                                <path
+                                    d="M20 49h25a11 11 0 0 0 1-21.95A16 16 0 0 0 15 29a10 10 0 0 0 5 20z"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"/>
+
+
+                                <path
+                                    d="M32 21v25"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="5"
+                                    stroke-linecap="round"/>
+
+
+                                <path
+                                    d="M23 30l9-9 9 9"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"/>
+
+                            </svg>
+
+
+                        </div>
+
+
+
+                        <h3>
+                            Drag &amp; drop your hospital dataset here
+                        </h3>
+
+
+                        <p class="upload-browse-text">
+                            or click to browse files
+                        </p>
+
+
+                        <span class="upload-supported">
+                            Supports CSV and XLSX files
+                        </span>
+
+
+
+                        <label
+                            for="fileInput"
+                            class="upload-choose-button">
+
+
+                            <svg viewBox="0 0 24 24">
+
+                                <path
+                                    d="M4 7h6l2 2h8v10H4z"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linejoin="round"/>
+
+                            </svg>
+
+
+                            Choose File
+
+
+                        </label>
+
+
 
                         <input
                             type="file"
                             id="fileInput"
                             accept=".csv,.xlsx"
-                        >
+                            hidden>
 
-                        <button id="analyzeButton">
-                            Analyze Dataset
-                        </button>
 
                     </div>
 
 
-                    <p
-                        id="fileName"
-                        class="file-name"
-                    >
-                        No file selected
-                    </p>
+                </div>
+
+
+
+                <!-- SELECTED FILE -->
+
+                <p
+                    id="fileName"
+                    class="upload-file-name">
+
+                    No file selected
+
+                </p>
+
+
+
+                <!-- ANALYZE -->
+
+                <div class="upload-action-row">
 
 
                     <p
                         id="statusMessage"
-                        class="status"
-                    ></p>
+                        class="status">
+                    </p>
+
+
+                    <button
+                        id="analyzeButton"
+                        class="upload-analyze-button"
+                        type="button">
+
+                        Analyze Dataset
+
+                    </button>
+
 
                 </div>
 
 
-                <!-- Dataset Analysis -->
-
-                <section
-                    id="analysisSection"
-                    class="card hidden"
-                >
-
-                    <h2>Dataset Analysis</h2>
+            </div>
 
 
-                    <div class="info-grid">
 
-                        <div class="info-box">
-                            <span>File</span>
-                            <strong id="resultFile">-</strong>
-                        </div>
+            <!-- =================================================
+                 ANALYSIS RESULTS
+            ================================================== -->
 
-
-                        <div class="info-box">
-                            <span>Rows</span>
-                            <strong id="resultRows">-</strong>
-                        </div>
-
-
-                        <div class="info-box">
-                            <span>Columns</span>
-                            <strong id="resultColumns">-</strong>
-                        </div>
-
-
-                        <div class="info-box">
-                            <span>Duplicate Rows</span>
-                            <strong id="resultDuplicates">-</strong>
-                        </div>
-
-                    </div>
-
-
-                    <div class="section-block">
-
-                        <h3>Available Modules</h3>
-
-                        <div
-                            id="modulesContainer"
-                            class="modules"
-                        ></div>
-
-                    </div>
-
-
-                    <p
-                        id="analysisStatus"
-                        class="analysis-status"
-                    ></p>
-
-
-                    <!-- Dynamic analytics is inserted here -->
-
-                </section>
-
-            </section>
-
-
-            <!-- ANALYTICS PAGE -->
             <section
-                id="analyticsPage"
-                class="page"
-            >
+                id="analysisSection"
+                class="card hidden">
 
-                <div class="topbar">
+
+                <div class="section-heading">
+
 
                     <div>
 
-                        <h1>Hospital Analytics</h1>
+                        <span class="eyebrow">
+                            DATA UNDERSTANDING
+                        </span>
 
-                        <p>
-                            Explore operational analytics generated
-                            from uploaded hospital datasets.
+
+                        <h2>
+                            Dataset Intelligence
+                        </h2>
+
+
+                        <p class="description">
+                            Key details detected from your uploaded dataset.
                         </p>
 
                     </div>
 
+
                 </div>
 
 
-                <div class="analytics-placeholder">
 
-                    <div class="placeholder-icon">
-                        📊
+                <!-- DATASET SUMMARY -->
+
+                <div class="info-grid">
+
+
+                    <div class="info-box">
+
+                        <span>
+                            File
+                        </span>
+
+                        <strong id="resultFile">
+                            —
+                        </strong>
+
                     </div>
 
-                    <h2>Analytics Workspace</h2>
 
-                    <p>
-                        Upload a hospital dataset from the Dashboard
-                        to generate analytics.
-                    </p>
 
-                    <button
-                        class="secondary-button"
-                        data-page="dashboard"
-                    >
-                        Go to Dashboard
-                    </button>
+                    <div class="info-box">
+
+                        <span>
+                            Rows
+                        </span>
+
+                        <strong id="resultRows">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="info-box">
+
+                        <span>
+                            Columns
+                        </span>
+
+                        <strong id="resultColumns">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="info-box">
+
+                        <span>
+                            Duplicate Rows
+                        </span>
+
+                        <strong id="resultDuplicates">
+                            —
+                        </strong>
+
+                    </div>
+
 
                 </div>
+
+
+
+                <!-- AVAILABLE MODULES -->
+
+                <div class="section-block">
+
+
+                    <h3>
+                        Available Modules
+                    </h3>
+
+
+                    <div
+                        id="modulesContainer"
+                        class="modules">
+                    </div>
+
+
+                </div>
+
+
+
+                <p
+                    id="analysisStatus"
+                    class="analysis-status">
+                </p>
+
 
             </section>
 
 
-           <section
-    id="mlPage"
-    class="page"
->
+        </section>
 
-    <div class="topbar">
 
-        <h1>ML Predictions</h1>
+    </main>
 
-        <p>
-            Machine learning predictions for hospital operations.
-        </p>
 
-    </div>
+</div>
 
 
-    <div id="mlStatus" class="analysis-status">
-        Loading ML predictions...
-    </div>
 
+<!-- DATASET JAVASCRIPT -->
 
-    <div class="kpi-grid">
+<script src="/script.js"></script>
 
-        <div class="kpi-card">
-
-            <span>Next Month Admissions</span>
-
-            <strong id="admissionForecast">
-                -
-            </strong>
-
-        </div>
-
-
-        <div class="kpi-card">
-
-            <span>Admission Forecast Month</span>
-
-            <strong id="forecastMonth">
-                -
-            </strong>
-
-        </div>
-
-
-        <div class="kpi-card">
-
-            <span>Average Predicted Occupied Beds</span>
-
-            <strong id="bedForecast">
-                -
-            </strong>
-
-        </div>
-
-
-        <div class="kpi-card">
-
-            <span>Equipment Risk</span>
-
-            <strong id="equipmentRisk">
-                -
-            </strong>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>7-Day Bed Demand Forecast</h2>
-
-        <div
-            id="bedForecastTable"
-            class="table-container"
-        ></div>
-
-    </div>
-
-</section>
-
-
-            <!-- DOCUMENTS PAGE -->
-            <section
-                id="documentsPage"
-                class="page"
-            >
-
-                <div class="topbar">
-
-                    <h1>Document Intelligence</h1>
-
-                </div>
-
-
-                <div class="coming-soon">
-
-                    <div>📄</div>
-
-                    <h2>Hospital Documents</h2>
-
-                    <p>
-                        PDF and DOCX document analysis will appear here.
-                    </p>
-
-                </div>
-
-            </section>
-
-
-            <!-- AI ASSISTANT PAGE -->
-            <section
-                id="assistantPage"
-                class="page"
-            >
-
-                <div class="topbar">
-
-                    <h1>AI Hospital Assistant</h1>
-
-                </div>
-
-
-                <div class="coming-soon">
-
-                    <div>💬</div>
-
-                    <h2>AI Assistant</h2>
-
-                    <p>
-                        Ask questions about hospital operations
-                        using your actual data.
-                    </p>
-
-                </div>
-
-            </section>
-
-
-         <!-- POWER BI PAGE -->
-<section id="powerbiPage" class="page">
-
-    <div class="topbar">
-        <div>
-            <h1>Power BI</h1>
-            <p>Hospital management dashboards and operational insights.</p>
-        </div>
-    </div>
-
-
-    <!-- EXECUTIVE OVERVIEW -->
-    <div class="powerbi-section">
-
-        <h2>Executive Overview</h2>
-
-        <iframe
-            title="Hospital Operations Intelligence - Executive Overview"
-            width="100%"
-            height="750"
-            src="https://app.powerbi.com/view?r=eyJrIjoiYjY3ZjQ0MDgtOTQyZS00MzZkLTg4Y2MtYTQ2NmU0YzgyZWZhIiwidCI6ImUxNGU3M2ViLTUyNTEtNDM4OC04ZDY3LThmOWYyZTJkNWE0NiIsImMiOjEwfQ%3D%3D"
-            frameborder="0"
-            allowfullscreen="true">
-        </iframe>
-
-    </div>
-
-
-    <!-- OPERATIONS ANALYTICS -->
-    <div class="powerbi-section">
-
-        <h2>Operations Analytics</h2>
-
-        <iframe
-            title="Hospital Operations Intelligence - Operations Analytics"
-            width="100%"
-            height="750"
-            src="https://app.powerbi.com/view?r=eyJrIjoiYjY3ZjQ0MDgtOTQyZS00MzZkLTg4Y2MtYTQ2NmU0YzgyZWZhIiwidCI6ImUxNGU3M2ViLTUyNTEtNDM4OC04ZDY3LThmOWYyZTJkNWE0NiIsImMiOjEwfQ%3D%3D&pageName=1476d82808c2d8c5c904"
-            frameborder="0"
-            allowfullscreen="true">
-        </iframe>
-
-    </div>
-
-</section>
-
-
-        </main>
-
-    </div>
-
-
-    <script src="/script.js"></script>
-
+<script src="/sidebar.js"></script>
 </body>
 
 </html>
