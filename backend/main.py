@@ -15,15 +15,11 @@ from backend.data_understanding import understand_dataset
 from backend.analytics import calculate_analytics
 from backend.ml_service import get_ml_predictions, get_ml_predictions_for_dataset
 from backend.dashboard_config import build_dashboard_config
-from backend.documents.api import (
-    router as documents_router,
-    DocumentQuestion,
-    ask_document_question,
-)
 from backend.auth import router as auth_router
 from backend.copilot_router import classify_question
 from backend.sql_analytics import run_sql_question, get_database_analytics
 from backend.nexa_priority_service import get_equipment_priority
+from backend.documents.api import router as documents_router
 
 from starlette.concurrency import run_in_threadpool
 
@@ -34,6 +30,7 @@ app = FastAPI(
     title="MedaNexa - Hospital Intelligence Platform",
     version="1.0",
 )
+app.include_router(documents_router)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 APP_FOLDER = PROJECT_ROOT / "app"
@@ -642,10 +639,19 @@ async def copilot_ask(
 
         try:
 
+            # Load document/RAG components only when a RAG question
+            # is actually requested. This keeps application startup
+            # lightweight for the Render deployment.
+            from backend.documents.api import (
+                DocumentQuestion,
+                ask_document_question,
+            )
+
             answer = await run_in_threadpool(
                 ask_document_question,
                 DocumentQuestion(
-                    question=question
+                    question=question,
+                    document_name=request.session.get("active_document_name"),
                 ),
                 request,
             )
@@ -1356,15 +1362,6 @@ def _prediction_copilot_answer(
         sources,
         True,
     )
-
-
-# ============================================================
-# DOCUMENT ROUTER
-# ============================================================
-
-app.include_router(
-    documents_router
-)
 
 
 # ============================================================
